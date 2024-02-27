@@ -12,6 +12,15 @@ const UserItem = () => {
     const {users} = useContext(UsersContext);
     const [user, setUser] = useState(undefined);
 
+    const navigate = useNavigate();
+
+    const handleHomeBtn = () => {
+        navigate('/');
+    }
+    const handleBackBtn = () => {
+        navigate(-1);
+    }
+
     useEffect(() => {
         const user = users.find(user => user.id === parseInt(userId));
         setUser(user);
@@ -19,6 +28,9 @@ const UserItem = () => {
 
     return <>
         <h1>User item: {userId}</h1>
+        <button onClick={handleHomeBtn}>Home</button>
+        <button onClick={handleBackBtn}>Back</button>
+        
         {user ? (
         <div>
             <p>name: {user.name}</p>
