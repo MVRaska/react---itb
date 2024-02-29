@@ -1,17 +1,19 @@
 import  './style.css';
-import NavTabsItem from '';
-import *as routes from ''
+import NavTabsItem from './NavTabsItem';
+import *as routes from '../../constants/routes'
 
 
 const NavTabs = () => {
 
-    return <div className='navtavs-wrapper'>
+    console.log(routes);
+
+    return <div className='navtabs-wrapper'>
       
-      {Object.values(routes).map(route => <NavTabsItem value={route} />)}
+      {/* {Object.values(routes).map(route => <NavTabsItem value={route} />)} */}
       
-       {/* <NavTabsItem value='Launches' />
-       <NavTabsItem value='Launches' />
-       <NavTabsItem value='Launches' /> */}
+      <NavTabsItem value='Launches' />
+      <NavTabsItem value='Rockets' />
+      <NavTabsItem value='Ships' />
     </div>
 }
 

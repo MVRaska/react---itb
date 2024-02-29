@@ -14,17 +14,18 @@ U NavTabsItem komponenti koristićemo Link komponentu za rutu koja se dobija iz 
 */
 
 // import logoSvg from '../../Space-LogoX.svg';
-import {ReactComponent as SpaceXLogo} from '../../Space-LogoX.svg';
+import {ReactComponent as Logo} from '../../assets/Space-LogoX.svg';
 import { useNavigate } from 'react-router-dom';
+import {NavTabs} from '.'
 
 
 const Navbar = () => {
-    const Navigate
+    const navigate = useNavigate();
 
-    return <div>
-        <SpaceXLogo fill='white' onClick={() => navigate('/')} />
+    return <div className="navbar">
+        <Logo fill='white' onClick={() => navigate('/')} style={{cursor: pointer}} />
         <NavTabs />
-    <div/>
+    </div>
 }
 
 export default Navbar;
