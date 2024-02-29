@@ -12,7 +12,7 @@ const UserItem = () => {
     const {users} = useContext(UsersContext);
     const [user, setUser] = useState(undefined);
 
-    const navigate = useNavigate();
+    const navigate = useNavigate();  //za navigaciju u react Router-u
 
     const handleHomeBtn = () => {
         navigate('/');
