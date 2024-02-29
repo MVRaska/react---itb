@@ -1,19 +1,22 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import LaunchesList from '';
+import api from '';
 
 const LaunchesView = () => {
 
-    const [state, setState] = useState([]);
+    const [launches, setLaunches] = useState([]);
 
     useEffect(() => {
         api.get('/launches')
         .then(res => {
             console.log(res);
-            setState(res.data);
+            setLaunches(res.data.slice(0, 10));
         });    
     }, []);
 
     return <>
-        <h1>LaunchesView</h1>
+        <h1>Launches View</h1>
+        {launches.length ? <LaunchesList launches={launches} /> : null}
     </>
 }
 

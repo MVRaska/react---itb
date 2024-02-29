@@ -1,21 +1,21 @@
 import {useEffect, useState} from 'react';
 import api from '../../axios/api';
-import Company from '../components/company/ Company';
+import Company from '../company/Company';
 
 const HomeView = () => {
-    const [state, setState] = useState([]);
+    const [companyInfo, setCompanyInfo] = useState(undefined);
 
     useEffect(() => {
         api.get('/company')
         .then(res => {
             console.log(res);
-            setState(res.data);
+            setCompanyInfo(res.data);
         });    
     }, []);
 
     return <>
         <h1>HomeView</h1>
-        <Company companyInfo={state} />
+        <Company companyInfo={companyInfo} />
     </>
 }
 
