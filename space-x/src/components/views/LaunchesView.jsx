@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
-import LaunchesList from '';
-import api from '';
+import LaunchesList from '../launches/LaunchesList';
+import api from '../../axios/api';
 
 const LaunchesView = () => {
 

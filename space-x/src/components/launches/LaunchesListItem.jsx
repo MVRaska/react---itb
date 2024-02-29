@@ -1,4 +1,4 @@
-import LaunchesList from './LaunchesList'
+import LaunchesList from './LaunchesList';
 
 const LaunchesListItem = ({launch}) => {
     return <div>
