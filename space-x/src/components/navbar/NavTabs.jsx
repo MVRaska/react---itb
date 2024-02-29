@@ -1,6 +1,6 @@
 import  './style.css';
 import NavTabsItem from './NavTabsItem';
-import *as routes from '../../constants/routes'
+import * as routes from '../../constants/routes'
 
 
 const NavTabs = () => {

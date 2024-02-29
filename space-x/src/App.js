@@ -1,22 +1,19 @@
 
 import './App.css';
 
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomeView from './components/views/HomeView';
-import LaunchesView from './components/views/LaunceshView';
+import LaunchesView from './components/views/LaunchesView';
 import RocketsView from './components/views/RocketsView';
 import ShipsView from './components/views/ShipsView';
-import Navbar from './components/navbar/Navbar';
+import {Navbar} from './components/navbar';
 
 function App() {
   return (
     <div className="App">
 
       <Router>
-        <Link to='/'>Home</Link>
-        <Link to='/launches'>Launches</Link>
-        <Link to='/rockets'>Rockets</Link>
-        <Link to='/ships'>Ships</Link>
+        <Navbar />
         <Routes>
           <Route path='/launches' element={<LaunchesView />} />
           <Route path='/rockets' element={<RocketsView/>} />
@@ -24,8 +21,7 @@ function App() {
           <Route path='/' element={<HomeView />} />
         </Routes>
       </Router>
-      
-      
+            
     </div>
   );
 }
