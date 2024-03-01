@@ -1,7 +1,7 @@
 
 
-const SnipsView = () => {
-    return <h1>SnipsView</h1>
+const ShipsView = () => {
+    return <h1>ShipsView</h1>
 }
 
-export default SnipsView;
+export default ShipsView;

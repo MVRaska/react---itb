@@ -14,12 +14,14 @@ function App() {
 
       <Router>
         <Navbar />
-        <Routes>
-          <Route path='/launches' element={<LaunchesView />} />
-          <Route path='/rockets' element={<RocketsView/>} />
-          <Route path='/ships' element={<ShipsView />} />
-          <Route path='/' element={<HomeView />} />
-        </Routes>
+        <div className="view-wrapper">
+          <Routes>
+            <Route path='/launches' element={<LaunchesView />} />
+            <Route path='/rockets' element={<RocketsView/>} />
+            <Route path='/ships' element={<ShipsView />} />
+            <Route path='/' element={<HomeView />} />
+          </Routes>
+        </div>
       </Router>
             
     </div>

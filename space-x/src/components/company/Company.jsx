@@ -1,22 +1,23 @@
-import {useState} from 'react';
 
 const Company = ({companyInfo}) => {
     return <div>
-        <h1>{companyInfo.name}</h1>
-        <p>Founder: {companyInfo.founder}</p>
-        <p>Employees: {companyInfo.founder}</p>
         <div>
-            {Object.keys(companyInfo.headquarters).map(key => {
-                <div key={key}>
-                    {key}: {companyInfo.headquarters[key]}
-                </div>
-            })}
+            <h1>{companyInfo.name}</h1>
+            <p>Founder: <i>{companyInfo.founder}</i></p>
+            <p>Employees: <i>{companyInfo.founder}</i></p>
+            <div>
+                {Object.keys(companyInfo.headquarters).map(key => {
+                    return <div key={key}>
+                        {key}: {companyInfo.headquarters[key]}
+                    </div>
+                })}
+            </div>
         </div>
 
         <div>
             <h4>Links:</h4>
             {Object.keys(companyInfo.links).map(key => {
-                <div key={key}>
+                return <div key={key}>
                     <a href={companyInfo.links[key]}>{companyInfo.links[key]}</a> 
                 </div>
             })}
