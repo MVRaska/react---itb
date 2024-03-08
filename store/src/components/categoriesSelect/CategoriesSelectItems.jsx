@@ -1,17 +1,19 @@
-import ProductsListItem from '../products/ProductsListItem';
 
-const CategoriesSelectItems = ({products, categories}) => {
+const CategoriesSelectItems = ({products, categories, selectedCategory, setSelectedCategory, setFilteredProducts}) => {
 
-    const handleCategoryChange = () => {
-        {categories.map(category => (
-            products.filter(product => product.category === category ? <ProductsListItem  /> : null)
-        ))}
+    const handleCategoryChange = (e) => {
+        const selectedCategory = e.target.value;
+        setSelectedCategory(selectedCategory);
+
+        const filteredProducts = products.filter(product => product.category === selectedCategory);
+        setFilteredProducts(filteredProducts);
     }
 
     return <>
         <p>Filter products by category:</p>
-        <select onChange={handleCategoryChange}>
-            {categories.map(category => <option value={category}>{category}</option>)}
+        <select  value={selectedCategory} onChange={handleCategoryChange} className="filterCategory">
+            <option value="" selected hidden>Select category</option>
+            {categories.map(category => <option key={category} value={category}>{category}</option>)}
         </select>
     </>
 }

@@ -8,7 +8,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     return <div className='navbar'>
-        <img src={logo} alt='logo' onClick={() => navigate('/')} style={{cursor: 'pointer'}} />
+        <Link to='/'><img src={logo} alt='logo' style={{cursor: 'pointer'}} /></Link>
         <div>
             <Link to='/products' style={{textDecoration: 'none'}}>ALL PRODUCTS</Link>
             <Link to='/cart'><img src={cart} alt='cart' /></Link>

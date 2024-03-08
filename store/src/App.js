@@ -12,6 +12,7 @@ import TermsOfService from './components/views/TermsOfService';
 import Contact from './components/views/Contact';
 import PageNotFound from './components/views/PageNotFound';
 import ProductsContextProvider from './productsContext/ProductsContext';
+// import FilteredProducts from './components/views/FilteredProducts';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path='/products' element={<Products />} />
             <Route path='/products/:productId' element={<Product />} />
+            {/* <Route path='/products/filtered-products' element={<FilteredProducts />} /> */}
             <Route path='/cart' element={<Cart />} />
             <Route path='/privacy' element={<PrivacyPolicy />} />
             <Route path='/terms' element={<TermsOfService />} />

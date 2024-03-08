@@ -1,32 +1,65 @@
 import { useState, useEffect, useContext } from 'react';
-import api from '../../utils/api';
 import ProductsList from '../products/ProductsList';
 import CategorySelectList from '../categoriesSelect/CategoriesSelectList';
 import { ProductsContext } from '../../productsContext/ProductsContext';
+import PriceOrder from '../priceOrder/PriceOrder';
 
 const Products = () => {
-    // const [products, setProducts] = useState([]);
-    // const [error, setError] = useState(false);
+    const {state} = useContext(ProductsContext);
+    const {products} = state;
 
-    const [state, productsDispatch] = useContext(ProductsContext);
-    const {products, error} = state;
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [sortOrder, setSortOrder] = useState(null);
 
     useEffect(() => {
+        let updatedProducts = [...products];
+        if (selectedCategory) {
+            updatedProducts = products.filter(product => product.category === selectedCategory);
+        }
+        setFilteredProducts(updatedProducts);
+    }, [products, selectedCategory]);
 
-        // api.get('/products')
-        // .then(res => setProducts(res.data))
-        // .catch(e => setError(true))
+    const handlePriceOrder = (e) => {
+        const order = e.target.value;
+        setSortOrder(order);
+    }
 
-        api.get('/products')
-        .then(res => productsDispatch({type: 'FETCH_PRODUCTS_SUCCESS', payload: res.data}))
-        .catch(error => productsDispatch({type: 'FETCH_PRODUCTS_FAILURE', payload: error.data}))
-    }, [])
+    const sortedProducts = [...filteredProducts].sort((product1, product2) => {
+        if (sortOrder === 'ascending') {
+            return product1.price - product2.price;
+        } else if (sortOrder === 'descending') {
+            return product2.price - product1.price;
+        } else {
+            return 0;
+        }        
+    });
     
     return <>
-        <CategorySelectList products={products} />
-        {/* <PriceOrderSelect /> */}
-        <h2>All products</h2>
-        <ProductsList products={products} />
+        <CategorySelectList 
+            products={products}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            setFilteredProducts={setFilteredProducts} 
+        />
+        <PriceOrder 
+            products={products} 
+            filteredProducts={filteredProducts} 
+            setFilteredProducts={setFilteredProducts} 
+            handlePriceOrder={handlePriceOrder}
+        />
+        
+        {selectedCategory ? (
+            <>
+                <h2>Products in category: {selectedCategory}</h2>
+                <ProductsList products={sortedProducts} />
+            </>
+        ) : ( <>
+                <h2>All products</h2>
+                <ProductsList products={sortedProducts} />
+            </>
+        )
+        }
     </>
 }
 
