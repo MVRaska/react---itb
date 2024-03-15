@@ -1,18 +1,23 @@
-import './navbarStyle.css';
-import logo from '../../icons/logo2.png';
-import cart from '../../icons/cart.png';
+import './styleNavbar.css';
+import logo from '../../assets/logo2.png';
+import cart from '../../assets/cart.png';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useContext } from 'react';
+// import { ProductsContext } from '../../productsContext/ProductsContext';
+import { CartContext } from '../../cartContext/CartContext';
 
 const Navbar = () => {
-    const navigate = useNavigate();
+    const {numOfItems} = useContext(CartContext);
+    // const {products} = state;
+
+    // const navigate = useNavigate();
 
     return <div className='navbar'>
         <Link to='/'><img src={logo} alt='logo' style={{cursor: 'pointer'}} /></Link>
         <div>
-            <Link to='/products' style={{textDecoration: 'none'}}>ALL PRODUCTS</Link>
+            <Link to='/products' style={{textDecoration: 'none'}}>PRODUCTS</Link>
             <Link to='/cart'><img src={cart} alt='cart' /></Link>
-            {<span className='numberOfItems'>1</span>}
+            <Link to='/cart'><span className='numberOfItems'>{numOfItems}</span></Link>
         </div>
     </div>
 }

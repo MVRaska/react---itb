@@ -3,19 +3,24 @@ const CategoriesSelectItems = ({products, categories, selectedCategory, setSelec
 
     const handleCategoryChange = (e) => {
         const selectedCategory = e.target.value;
-        setSelectedCategory(selectedCategory);
+        
+        if (selectedCategory === 'all products') {
+            setSelectedCategory('');
+        } else {
+            setSelectedCategory(selectedCategory);
+        }
 
-        const filteredProducts = products.filter(product => product.category === selectedCategory);
+        const filteredProducts = selectedCategory === 'all products' ? products : products.filter(product => product.category === selectedCategory);
         setFilteredProducts(filteredProducts);
     }
 
-    return <>
-        <p>Filter products by category:</p>
+    return <div className='productsFilter'>
+        <p>Filter by category:</p>
         <select  value={selectedCategory} onChange={handleCategoryChange} className="filterCategory">
-            <option value="" selected hidden>Select category</option>
-            {categories.map(category => <option key={category} value={category}>{category}</option>)}
+            <option value='all products'>ALL PRODUCTS</option>
+            {categories.map(category => <option key={category} value={category}>{category.toUpperCase()}</option>)}
         </select>
-    </>
+    </div>
 }
 
 export default CategoriesSelectItems;

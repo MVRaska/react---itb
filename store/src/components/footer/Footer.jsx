@@ -2,13 +2,11 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
 
-    return <>
-        <p>Please contact us and discover how we can help you.</p>
-        <Link to='/contact'>CONTACT</Link>
-        
-        <p>You can view our <Link to='/terms'>Terms Of Service</Link> and <Link to='/privacy'>Privacy Policy</Link> for more information.</p>
+    return <footer className="footer">
+        <div>Please carefully read our <Link to='/terms'>Terms Of Service</Link> and <Link to='/privacy'>Privacy Policy</Link> before making any purchases of our products.</div>
+        <div>For more informations, please <Link to='/contact'>CONTACT</Link> us.</div>
         <p>&copy; 2024 Online Store</p>
-    </>
+    </footer>
 }
 
 export default Footer;

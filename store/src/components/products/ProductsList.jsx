@@ -1,10 +1,11 @@
 import ProductsListItem from './ProductsListItem';
+import './styleProductsList.css';
 
-const ProductsList = ({products}) => {
+const ProductsList = ({products, addToCart}) => {
 
-    return <>
-        {products.map(product => <ProductsListItem key={product.id} product={product} />)}
-    </>
+    return <section className='productsList'>
+        {products.map(product => <ProductsListItem key={product.id} product={product} addToCart={addToCart} />)}
+    </section>
 }
 
 export default ProductsList;

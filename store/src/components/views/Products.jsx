@@ -3,10 +3,14 @@ import ProductsList from '../products/ProductsList';
 import CategorySelectList from '../categoriesSelect/CategoriesSelectList';
 import { ProductsContext } from '../../productsContext/ProductsContext';
 import PriceOrder from '../priceOrder/PriceOrder';
+import { CartContext } from '../../cartContext/CartContext';
+import './styleProducts.css';
 
 const Products = () => {
     const {state} = useContext(ProductsContext);
     const {products} = state;
+
+    const {addToCart} = useContext(CartContext);
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -18,7 +22,7 @@ const Products = () => {
             updatedProducts = products.filter(product => product.category === selectedCategory);
         }
         setFilteredProducts(updatedProducts);
-    }, [products, selectedCategory]);
+    }, [products, selectedCategory, sortOrder]);
 
     const handlePriceOrder = (e) => {
         const order = e.target.value;
@@ -36,27 +40,29 @@ const Products = () => {
     });
     
     return <>
-        <CategorySelectList 
-            products={products}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            setFilteredProducts={setFilteredProducts} 
-        />
-        <PriceOrder 
-            products={products} 
-            filteredProducts={filteredProducts} 
-            setFilteredProducts={setFilteredProducts} 
-            handlePriceOrder={handlePriceOrder}
-        />
+        <div className='productsFilterOrder'>
+            <CategorySelectList 
+                products={products}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                setFilteredProducts={setFilteredProducts} 
+            />
+            <PriceOrder 
+                products={products} 
+                filteredProducts={filteredProducts} 
+                setFilteredProducts={setFilteredProducts} 
+                handlePriceOrder={handlePriceOrder}
+            />
+        </div>
         
         {selectedCategory ? (
             <>
                 <h2>Products in category: {selectedCategory}</h2>
-                <ProductsList products={sortedProducts} />
+                <ProductsList products={sortedProducts} addToCart={addToCart} />
             </>
         ) : ( <>
                 <h2>All products</h2>
-                <ProductsList products={sortedProducts} />
+                <ProductsList products={sortedProducts} addToCart={addToCart} />
             </>
         )
         }
